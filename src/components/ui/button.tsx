@@ -4,18 +4,18 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-sm border text-sm font-extrabold uppercase tracking-[0.08em] transition-[background-color,color,border-color,transform] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-ink disabled:pointer-events-none disabled:opacity-50 active:translate-y-px",
+  "group relative isolate inline-flex min-h-12 items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-none border text-sm font-extrabold uppercase tracking-[0.1em] shadow-[0_0_0_transparent] outline-none transition-[background-color,color,border-color,box-shadow,transform] duration-300 before:pointer-events-none before:absolute before:inset-y-0 before:-left-10 before:w-5 before:-skew-x-12 before:bg-white/60 before:opacity-70 before:blur-[1px] before:transition-transform before:duration-500 hover:before:translate-x-[280px] focus-visible:ring-2 focus-visible:ring-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-ink disabled:pointer-events-none disabled:opacity-50 active:translate-y-px [&>svg]:relative [&>svg]:z-10 [&>svg]:shrink-0 [&>svg]:transition-transform [&>svg]:duration-300 hover:[&>svg]:translate-x-0.5",
   {
     variants: {
       variant: {
         default:
-          "border-blue bg-blue px-6 text-white hover:border-cyan hover:bg-cyan hover:text-ink",
+          "border-cyan bg-cyan px-6 text-ink shadow-[4px_4px_0_#d923a5] hover:-translate-y-0.5 hover:border-white hover:bg-white hover:shadow-[6px_6px_0_#d923a5]",
         outline:
-          "border-white/40 bg-transparent px-6 text-white hover:border-white hover:bg-white hover:text-ink",
+          "border-white/45 bg-ink/20 px-6 text-white shadow-[4px_4px_0_rgba(0,207,255,0.28)] backdrop-blur-sm hover:-translate-y-0.5 hover:border-cyan hover:bg-cyan hover:text-ink hover:shadow-[6px_6px_0_#d923a5]",
         ghost:
-          "border-transparent bg-transparent px-4 text-white hover:bg-white/10",
+          "border-transparent bg-transparent px-4 text-white before:hidden hover:border-white/15 hover:bg-white/10 hover:text-cyan",
         light:
-          "border-white bg-white px-6 text-ink hover:border-cyan hover:bg-cyan",
+          "border-white bg-white px-6 text-ink shadow-[4px_4px_0_#00cfff] hover:-translate-y-0.5 hover:border-cyan hover:bg-cyan hover:shadow-[6px_6px_0_#d923a5]",
       },
       size: {
         default: "h-12",

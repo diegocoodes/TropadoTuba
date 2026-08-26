@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/logo";
@@ -17,13 +17,18 @@ const links = [
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const closeMenu = useCallback(() => {
+    setMenuOpen(false);
+    requestAnimationFrame(() => menuButtonRef.current?.focus());
+  }, []);
 
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-ink/95 backdrop-blur-sm">
         <div className="site-container flex h-[76px] items-center justify-between">
-          <a href="#inicio" aria-label="Tropa do Tubarão — início" className="outline-none focus-visible:ring-2 focus-visible:ring-cyan">
-            <Logo />
+          <a href="#inicio" aria-label="Tropa do Tubarão, início" className="outline-none focus-visible:ring-2 focus-visible:ring-cyan">
+            <Logo eager />
           </a>
           <nav className="hidden lg:block" aria-label="Navegação principal">
             <ul className="flex items-center gap-7">
@@ -43,6 +48,7 @@ export function Header() {
             <Button asChild size="sm"><a href="#inscricao">Faça parte</a></Button>
           </div>
           <button
+            ref={menuButtonRef}
             type="button"
             className="flex size-12 items-center justify-center border border-line text-white outline-none transition-colors hover:border-cyan hover:text-cyan focus-visible:ring-2 focus-visible:ring-cyan lg:hidden"
             aria-label="Abrir menu"
@@ -53,7 +59,7 @@ export function Header() {
           </button>
         </div>
       </header>
-      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <MobileMenu open={menuOpen} onClose={closeMenu} />
     </>
   );
 }

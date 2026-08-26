@@ -16,9 +16,9 @@ const barlow = Barlow_Condensed({
 });
 
 export const metadata: Metadata = {
-  title: "Tropa do Tubarão | Comunidade de Corrida em Paulista–PE",
+  title: "Tropa do Tubarão | Comunidade de Corrida em Paulista, PE",
   description:
-    "Treinos de corrida para diferentes níveis e idades em Paulista–PE. Corra com a Tropa do Tubarão e supere seus limites.",
+    "Treinos de corrida para diferentes níveis e idades em Paulista, PE. Corra com a Tropa do Tubarão e supere seus limites.",
   keywords: [
     "corrida em Paulista",
     "grupo de corrida Pernambuco",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Tropa do Tubarão | Corra com a Tropa",
     description:
-      "Uma comunidade para começar, evoluir e conquistar novos objetivos em Paulista–PE.",
+      "Uma comunidade para começar, evoluir e conquistar novos objetivos em Paulista, PE.",
     locale: "pt_BR",
     type: "website",
     images: [

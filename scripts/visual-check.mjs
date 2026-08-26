@@ -137,12 +137,28 @@ await send("Emulation.setDeviceMetricsOverride", {
 await navigate("http://localhost:3010");
 await loadImagesForVisualAudit();
 
-for (const id of ["inicio", "sobre", "treinos", "eventos", "galeria", "inscricao", "contato"]) {
+for (const id of ["inicio", "sobre", "instinto", "treinos", "eventos", "galeria", "inscricao", "contato"]) {
   await scrollToId(id);
   const metrics = await evaluate(`({scrollWidth:document.documentElement.scrollWidth,clientWidth:document.documentElement.clientWidth,top:Math.round(scrollY),visibleImages:[...document.images].filter((image)=>{const rect=image.getBoundingClientRect();return rect.bottom>0&&rect.top<innerHeight}).map((image)=>({loaded:image.complete&&image.naturalWidth>0,src:image.currentSrc.split("/").pop()}))})`);
   const path = await screenshot(`desktop-${id}`);
   report.views.push({ viewport: "desktop", id, path, ...metrics });
 }
+
+await send("Emulation.setDeviceMetricsOverride", {
+  width: 320,
+  height: 720,
+  deviceScaleFactor: 1,
+  mobile: true,
+});
+await navigate("http://localhost:3010");
+await loadImagesForVisualAudit();
+await scrollToId("treinos");
+report.views.push({
+  viewport: "mobile-narrow",
+  id: "treinos",
+  path: await screenshot("mobile-narrow-treinos"),
+  ...(await evaluate(`({scrollWidth:document.documentElement.scrollWidth,clientWidth:document.documentElement.clientWidth,top:Math.round(scrollY)})`)),
+});
 
 await send("Emulation.setDeviceMetricsOverride", {
   width: 390,
@@ -153,24 +169,25 @@ await send("Emulation.setDeviceMetricsOverride", {
 await navigate("http://localhost:3010");
 await loadImagesForVisualAudit();
 
-for (const id of ["inicio", "treinos", "galeria", "inscricao"]) {
+for (const id of ["inicio", "instinto", "treinos", "eventos", "galeria", "inscricao"]) {
   await scrollToId(id);
   const metrics = await evaluate(`({scrollWidth:document.documentElement.scrollWidth,clientWidth:document.documentElement.clientWidth,top:Math.round(scrollY),visibleImages:[...document.images].filter((image)=>{const rect=image.getBoundingClientRect();return rect.bottom>0&&rect.top<innerHeight}).map((image)=>({loaded:image.complete&&image.naturalWidth>0,src:image.currentSrc.split("/").pop()}))})`);
   const path = await screenshot(`mobile-${id}`);
   report.views.push({ viewport: "mobile", id, path, ...metrics });
 }
 
-await evaluate(`document.querySelector('#inscricao form')?.scrollIntoView({behavior:"instant",block:"start"})`);
+await evaluate(`document.querySelector('#inscricao a[href^="https://wa.me/"]')?.scrollIntoView({behavior:"instant",block:"center"})`);
 await sleep(800);
-report.views.push({ viewport: "mobile", id: "form", path: await screenshot("mobile-form") });
-await evaluate(`document.querySelector('#inscricao form')?.requestSubmit()`);
-await sleep(300);
-report.interactions.formValidationErrors = await evaluate(`document.querySelectorAll('#inscricao [role="alert"]').length`);
+report.views.push({ viewport: "mobile", id: "whatsapp-cta", path: await screenshot("mobile-whatsapp-cta") });
+report.interactions.whatsappCta = await evaluate(`document.querySelector('#inscricao a[href^="https://wa.me/"]')?.getAttribute("href") || null`);
+
+await scrollToId("eventos");
+report.interactions.peRunningEventLinks = await evaluate(`document.querySelectorAll('#eventos a[href^="https://www.perunning.com.br/events/"]').length`);
+report.interactions.eventDates = await evaluate(`[...document.querySelectorAll('#eventos a[href^="https://www.perunning.com.br/events/"]')].map((card)=>card.textContent.includes("29 de agosto de 2026"))`);
 
 await scrollToId("treinos");
-await evaluate(`[...document.querySelectorAll('#treinos button')].find((button)=>button.textContent.trim()==="Intermediário")?.click()`);
-await sleep(300);
-report.interactions.intermediateTrainingCount = await evaluate(`document.querySelectorAll('#treinos [aria-live="polite"] > div').length`);
+report.interactions.trainingDate = await evaluate(`document.querySelector('#treinos')?.textContent.includes("28 de agosto") || false`);
+report.interactions.trainingWhatsAppCta = await evaluate(`document.querySelector('#treinos a[href^="https://wa.me/"]')?.getAttribute("href") || null`);
 
 await evaluate(`document.getElementById("inicio")?.scrollIntoView({behavior:"instant",block:"start"})`);
 await evaluate(`document.querySelector('button[aria-label="Abrir menu"]')?.click()`);

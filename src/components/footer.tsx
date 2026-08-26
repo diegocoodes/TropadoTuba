@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Instagram, MapPin, MessageCircle } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { whatsappUrl } from "@/lib/utils";
@@ -19,11 +20,21 @@ export function Footer() {
       <div className="site-container">
         <div className="grid gap-12 pb-14 md:grid-cols-2 lg:grid-cols-[1.25fr_.75fr_1fr]">
           <div>
-            <Logo />
+            <div className="flex items-center gap-5">
+              <Image
+                src="/images/tubarao-com nome.png.PNG"
+                alt="Brasão Tropa do Tubarão, correr, superar, vencer"
+                width={1254}
+                height={1254}
+                sizes="96px"
+                className="size-24 rounded-full object-contain shadow-[0_0_28px_rgba(0,207,255,0.16)]"
+              />
+              <Logo />
+            </div>
             <p className="mt-6 font-title text-3xl font-bold uppercase leading-none text-white">
               Correr <span className="text-cyan">•</span> Superar <span className="text-magenta">•</span> Vencer
             </p>
-            <p className="mt-4 max-w-sm text-sm leading-7 text-muted">Corrida para todas as idades. Uma comunidade feita para evoluir junto em Paulista–PE.</p>
+            <p className="mt-4 max-w-sm text-sm leading-7 text-muted">Corrida para todas as idades. Uma comunidade feita para evoluir junto em Paulista, PE.</p>
           </div>
           <div>
             <h2 className="text-xs font-extrabold uppercase tracking-[0.16em] text-cyan">Links rápidos</h2>
@@ -42,7 +53,7 @@ export function Footer() {
                   <MessageCircle className="size-4 text-cyan" /> Fale com a equipe no WhatsApp
                 </a>
               </li>
-              <li className="flex items-center gap-3"><MapPin className="size-4 text-cyan" /> Paulista–PE</li>
+              <li className="flex items-center gap-3"><MapPin className="size-4 text-cyan" /> Paulista, PE</li>
             </ul>
           </div>
         </div>

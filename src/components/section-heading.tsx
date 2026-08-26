@@ -29,7 +29,7 @@ export function SectionHeading({
         )}
       </h2>
       {description && (
-        <p className={cn("mt-6 max-w-2xl text-base leading-7 md:text-lg md:leading-8", inverted ? "text-[#526078]" : "text-muted")}>
+        <p className={cn("mt-6 max-w-2xl text-base leading-7", inverted ? "text-[#526078]" : "text-muted")}>
           {description}
         </p>
       )}

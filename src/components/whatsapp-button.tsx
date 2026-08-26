@@ -27,10 +27,10 @@ export function WhatsAppButton() {
 
   return (
     <a
-      href={url ?? "#inscricao"}
-      target={url ? "_blank" : undefined}
-      rel={url ? "noreferrer" : undefined}
-      aria-label={url ? "Conversar com a Tropa no WhatsApp" : "Ir para o formulário de inscrição"}
+      href={url}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Conversar com a Tropa no WhatsApp"
       aria-hidden={hidden}
       tabIndex={hidden ? -1 : undefined}
       className={cn(

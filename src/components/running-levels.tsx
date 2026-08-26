@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { MotionReveal } from "@/components/motion-reveal";
@@ -19,13 +20,19 @@ export function RunningLevels() {
             <MotionReveal
               key={level.name}
               delay={index * 0.08}
-              className="group relative min-h-[340px] border-[#c8d0dc] p-7 last:border-0 max-lg:border-b lg:border-r lg:p-9"
+              className="group relative min-h-[420px] border-[#c8d0dc] p-7 last:border-0 max-lg:border-b lg:border-r lg:p-9"
             >
-              <div className="flex items-start justify-between">
-                <span className="font-title text-7xl font-extrabold leading-none text-blue/15">{level.number}</span>
-                <ArrowUpRight className="size-5 text-blue transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              <div className="relative h-44">
+                <Image
+                  src={level.mascot}
+                  alt={`Mascote da Tropa representando o nível ${level.name}`}
+                  fill
+                  sizes="(max-width: 1024px) 70vw, 320px"
+                  className="object-contain transition-transform duration-500 group-hover:-translate-y-2"
+                />
+                <ArrowUpRight className="absolute right-0 top-0 size-5 text-blue transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
               </div>
-              <div className="mt-12">
+              <div className="relative z-10 mt-5">
                 <span className="text-xs font-extrabold uppercase tracking-[0.14em] text-blue">{level.distance}</span>
                 <h3 className="mt-2 font-title text-4xl font-extrabold uppercase text-ink">{level.name}</h3>
                 <p className="mt-4 max-w-sm text-sm leading-7 text-[#526078]">{level.description}</p>

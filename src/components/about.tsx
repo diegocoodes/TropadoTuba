@@ -12,7 +12,7 @@ const features = [
 
 export function About() {
   return (
-    <section id="sobre" className="section-padding relative overflow-hidden bg-ink">
+    <section id="sobre" className="relative overflow-hidden bg-ink pt-[clamp(5rem,9vw,8rem)]">
       <div className="site-container">
         <div className="grid items-end gap-12 lg:grid-cols-[1.05fr_.95fr] lg:gap-20">
           <div>
@@ -44,14 +44,13 @@ export function About() {
           </div>
 
           <MotionReveal className="relative min-h-[490px] md:min-h-[620px]">
-            <div className="absolute inset-x-6 inset-y-0 border border-line md:left-12 md:right-0" />
             <div className="absolute inset-x-0 bottom-8 top-8 overflow-hidden md:right-12">
               <Image
-                src="/images/about.jpg"
-                alt="Grupo de corredores treinando junto em uma via arborizada"
+                src="/images/foto-perfil.png"
+                alt="Atleta da Tropa do Tubarão após uma prova de corrida"
                 fill
                 sizes="(max-width: 1024px) 100vw, 45vw"
-                className="object-cover object-center transition-transform duration-700 hover:scale-[1.025]"
+                className="object-contain object-center"
               />
               <div className="absolute inset-0 bg-ink/20" />
             </div>

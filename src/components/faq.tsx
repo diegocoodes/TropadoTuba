@@ -18,13 +18,8 @@ export function FAQ() {
         <Accordion type="single" collapsible className="border-t border-line">
           {faqs.map((faq, index) => (
             <AccordionItem value={`item-${index}`} key={faq.question}>
-              <AccordionTrigger>
-                <span className="flex items-start gap-4">
-                  <span className="pt-1 font-sans text-xs font-extrabold tracking-[0.1em] text-cyan">0{index + 1}</span>
-                  <span>{faq.question}</span>
-                </span>
-              </AccordionTrigger>
-              <AccordionContent className="pl-10">{faq.answer}</AccordionContent>
+              <AccordionTrigger>{faq.question}</AccordionTrigger>
+              <AccordionContent>{faq.answer}</AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
