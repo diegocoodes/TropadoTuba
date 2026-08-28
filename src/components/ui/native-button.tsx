@@ -36,8 +36,8 @@ export function NativeButton({
   return (
     <motion.div
       className={cn("group/native relative inline-flex w-fit", wrapperClassName)}
-      whileHover={{ scale: reducedMotion ? 1 : 1.018 }}
-      transition={reducedMotion ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 20 }}
+      whileHover={{ scale: reducedMotion ? 1 : 1.008 }}
+      transition={reducedMotion ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 24 }}
     >
       {glow && (
         <span className="pointer-events-none absolute -inset-2 bg-cyan/20 opacity-50 blur-xl transition-opacity duration-500 group-hover/native:opacity-90 group-focus-within/native:opacity-90" />
