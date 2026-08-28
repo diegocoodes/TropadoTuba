@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Instagram, MapPin, MessageCircle } from "lucide-react";
-import { whatsappUrl } from "@/lib/utils";
+import { WHATSAPP_GROUP_URL } from "@/lib/utils";
 
 const footerLinks = [
   ["Início", "#inicio"],
@@ -12,8 +12,6 @@ const footerLinks = [
 ] as const;
 
 export function Footer() {
-  const contactUrl = whatsappUrl("Olá! Conheci a Tropa do Tubarão pelo site e gostaria de saber como participar dos treinos.");
-
   return (
     <footer id="contato" className="border-t border-line bg-ink pt-16">
       <div className="site-container">
@@ -47,8 +45,8 @@ export function Footer() {
             <ul className="mt-5 space-y-4 text-sm text-ice/80">
               <li><a href="https://www.instagram.com/tropadotubaraorun" target="_blank" rel="noreferrer" className="flex items-center gap-3 outline-none transition-colors hover:text-cyan focus-visible:text-cyan"><Instagram className="size-4 text-cyan" /> @tropadotubaraorun</a></li>
               <li>
-                <a href={contactUrl ?? "#inscricao"} target={contactUrl ? "_blank" : undefined} rel={contactUrl ? "noreferrer" : undefined} className="flex items-center gap-3 outline-none transition-colors hover:text-cyan focus-visible:text-cyan">
-                  <MessageCircle className="size-4 text-cyan" /> Fale com a equipe no WhatsApp
+                <a href={WHATSAPP_GROUP_URL} target="_blank" rel="noreferrer" aria-label="Entrar no grupo da Tropa no WhatsApp" className="flex items-center gap-3 outline-none transition-colors hover:text-cyan focus-visible:text-cyan">
+                  <MessageCircle className="size-4 text-cyan" /> Entrar no grupo do WhatsApp
                 </a>
               </li>
               <li className="flex items-center gap-3"><MapPin className="size-4 text-cyan" /> Paulista, PE</li>

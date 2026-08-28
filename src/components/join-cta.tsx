@@ -3,7 +3,7 @@ import { MascotMotion } from "@/components/mascot-motion";
 import { MotionReveal } from "@/components/motion-reveal";
 import { NativeButton } from "@/components/ui/native-button";
 import { WavyBackground } from "@/components/ui/wavy-background";
-import { whatsappUrl } from "@/lib/utils";
+import { WHATSAPP_GROUP_URL } from "@/lib/utils";
 
 const benefits = [
   "Descubra o treino ideal para o seu ritmo",
@@ -12,10 +12,6 @@ const benefits = [
 ];
 
 export function JoinCta() {
-  const contactUrl = whatsappUrl(
-    "Olá! Conheci a Tropa do Tubarão pelo site e gostaria de participar dos treinos.",
-  );
-
   return (
     <section id="inscricao" className="section-padding relative overflow-hidden border-y border-cyan/25 bg-ink">
       <WavyBackground
@@ -49,17 +45,17 @@ export function JoinCta() {
           </div>
 
           <NativeButton
-            href={contactUrl}
+            href={WHATSAPP_GROUP_URL}
             target="_blank"
             rel="noreferrer"
             glow
             wrapperClassName="mt-9 w-full sm:w-fit"
             className="w-full sm:w-auto"
-            ariaLabel="Conversar com a Tropa do Tubarão no WhatsApp"
+            ariaLabel="Entrar no grupo da Tropa do Tubarão no WhatsApp"
           >
             <MessageCircle className="size-5" />
-            <span className="sm:hidden">Falar no WhatsApp</span>
-            <span className="hidden sm:inline">Falar com a Tropa no WhatsApp</span>
+            <span className="sm:hidden">Entrar no grupo</span>
+            <span className="hidden sm:inline">Entrar no grupo do WhatsApp</span>
             <ArrowUpRight className="size-4" />
           </NativeButton>
         </MotionReveal>

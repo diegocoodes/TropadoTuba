@@ -2,12 +2,10 @@
 
 import { MessageCircle } from "lucide-react";
 import { useEffect, useState } from "react";
-import { cn, whatsappUrl } from "@/lib/utils";
+import { cn, WHATSAPP_GROUP_URL } from "@/lib/utils";
 
 export function WhatsAppButton() {
   const [hidden, setHidden] = useState(false);
-  const url = whatsappUrl("Olá! Conheci a Tropa do Tubarão pelo site e gostaria de saber como participar dos treinos.");
-
   useEffect(() => {
     const targets = [document.getElementById("inscricao"), document.getElementById("contato")].filter(Boolean) as Element[];
     const visibleTargets = new Set<Element>();
@@ -27,10 +25,10 @@ export function WhatsAppButton() {
 
   return (
     <a
-      href={url}
+      href={WHATSAPP_GROUP_URL}
       target="_blank"
       rel="noreferrer"
-      aria-label="Conversar com a Tropa no WhatsApp"
+      aria-label="Entrar no grupo da Tropa no WhatsApp"
       aria-hidden={hidden}
       tabIndex={hidden ? -1 : undefined}
       className={cn(
@@ -39,7 +37,7 @@ export function WhatsAppButton() {
       )}
     >
       <MessageCircle className="size-5 text-cyan" />
-      <span className="hidden sm:inline">Fale com a Tropa</span>
+      <span className="hidden sm:inline">Entrar no grupo</span>
     </a>
   );
 }

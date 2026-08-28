@@ -5,6 +5,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/logo";
+import { WHATSAPP_GROUP_URL } from "@/lib/utils";
 
 const links = [
   ["Início", "#inicio"],
@@ -123,7 +124,15 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
           </motion.ul>
         </nav>
         <Button asChild size="lg" className="mt-auto w-full">
-          <a href="#inscricao" onClick={onClose}>Faça parte <ArrowUpRight className="size-4" /></a>
+          <a
+            href={WHATSAPP_GROUP_URL}
+            target="_blank"
+            rel="noreferrer"
+            onClick={onClose}
+            aria-label="Entrar no grupo da Tropa no WhatsApp"
+          >
+            Faça parte <ArrowUpRight className="size-4" />
+          </a>
         </Button>
           </motion.div>
         </motion.div>

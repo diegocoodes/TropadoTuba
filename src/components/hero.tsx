@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { NativeButton } from "@/components/ui/native-button";
 import { MotionReveal } from "@/components/motion-reveal";
 import { ShaderBackground } from "@/components/ui/adisyon-shader";
+import { WHATSAPP_GROUP_URL } from "@/lib/utils";
 
 export function Hero() {
   return (
@@ -30,7 +31,14 @@ export function Hero() {
           </MotionReveal>
 
           <MotionReveal eager delay={0.3} className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <NativeButton href="#inscricao" wrapperClassName="w-full sm:w-fit" className="w-full sm:w-auto">
+            <NativeButton
+              href={WHATSAPP_GROUP_URL}
+              target="_blank"
+              rel="noreferrer"
+              wrapperClassName="w-full sm:w-fit"
+              className="w-full sm:w-auto"
+              ariaLabel="Entrar no grupo da Tropa do Tubarão no WhatsApp"
+            >
               Quero fazer parte <ArrowRight className="size-4" />
             </NativeButton>
             <Button asChild size="lg" variant="outline" className="w-full bg-transparent sm:w-auto">

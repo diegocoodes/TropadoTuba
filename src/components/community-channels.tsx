@@ -1,12 +1,13 @@
 import { Activity, ArrowUpRight, MessageCircle } from "lucide-react";
 import { MotionReveal } from "@/components/motion-reveal";
 import { SectionHeading } from "@/components/section-heading";
+import { WHATSAPP_GROUP_URL } from "@/lib/utils";
 
 const channels = [
   {
     name: "Grupo no WhatsApp",
     description: "Receba avisos dos treinos, tire dúvidas e acompanhe as novidades da comunidade.",
-    href: "https://chat.whatsapp.com/DJ76xuBQOzH4hf4CSbPNFe?s=sw&p=i&mlu=4",
+    href: WHATSAPP_GROUP_URL,
     action: "Entrar no grupo",
     icon: MessageCircle,
     accent: "text-cyan",

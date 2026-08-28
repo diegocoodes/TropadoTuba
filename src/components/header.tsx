@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Logo } from "@/components/logo";
 import { MobileMenu } from "@/components/mobile-menu";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { cn, WHATSAPP_GROUP_URL } from "@/lib/utils";
 
 const links = [
   ["Início", "#inicio"],
@@ -122,7 +122,9 @@ export function Header() {
             transition={reducedMotion ? { duration: 0 } : { duration: 0.26 }}
           >
             <Button asChild size="sm">
-              <a href="#inscricao">Faça parte</a>
+              <a href={WHATSAPP_GROUP_URL} target="_blank" rel="noreferrer" aria-label="Entrar no grupo da Tropa no WhatsApp">
+                Faça parte
+              </a>
             </Button>
           </motion.div>
 

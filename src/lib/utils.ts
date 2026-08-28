@@ -1,6 +1,8 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
+export const WHATSAPP_GROUP_URL = "https://chat.whatsapp.com/DJ76xuBQOzH4hf4CSbPNFe?s=sw&p=i&mlu=4";
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }

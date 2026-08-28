@@ -110,7 +110,7 @@ Copie `.env.example` para `.env.local` e informe somente os dígitos do telefone
 NEXT_PUBLIC_WHATSAPP_NUMBER=55DDDNUMERO
 ```
 
-Essa variável alimenta os botões de conversa direta pelo WhatsApp. O link do grupo oficial é público e está configurado diretamente na seção de canais da comunidade.
+Essa variável alimenta a confirmação direta do próximo treino. Os CTAs de participação usam o link público do grupo oficial da comunidade.
 
 ## Comandos disponíveis
 
