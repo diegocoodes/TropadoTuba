@@ -3,22 +3,20 @@ import { HeroVisual } from "@/components/hero-visual";
 import { Button } from "@/components/ui/button";
 import { NativeButton } from "@/components/ui/native-button";
 import { MotionReveal } from "@/components/motion-reveal";
+import { ShaderBackground } from "@/components/ui/adisyon-shader";
 
 export function Hero() {
   return (
     <section id="inicio" className="hero-editorial relative overflow-hidden border-b border-cyan/20 bg-ink pt-[76px]">
-      <span className="hero-opening-line" aria-hidden="true" />
-
+      <ShaderBackground className="pointer-events-none absolute inset-0 size-full opacity-70" />
+      <div
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(7,9,30,0.94)_0%,rgba(7,9,30,0.78)_48%,rgba(7,9,30,0.28)_100%)] md:bg-[linear-gradient(90deg,rgba(7,9,30,0.96)_0%,rgba(7,9,30,0.84)_42%,rgba(7,9,30,0.18)_76%,rgba(7,9,30,0.38)_100%)]"
+        aria-hidden="true"
+      />
       <div className="site-container relative flex min-h-[844px] flex-col justify-center pb-20 pt-12 md:pb-28 md:pt-14 lg:min-h-[870px]">
-        <div className="relative z-10 w-full max-w-[690px]">
-          <MotionReveal eager>
-            <div className="mb-7 flex w-fit items-center gap-2 border-l-2 border-cyan bg-white/[0.035] px-3 py-2 text-[0.6rem] font-extrabold uppercase tracking-[0.12em] text-ice sm:gap-3 sm:text-xs sm:tracking-[0.17em]">
-              <span className="whitespace-nowrap">Comunidade de corrida</span>
-              <span className="size-1 shrink-0 bg-magenta" />
-              <span className="whitespace-nowrap">Paulista, PE</span>
-            </div>
-          </MotionReveal>
+        <HeroVisual />
 
+        <div className="relative z-10 w-full max-w-[690px]">
           <h1 className="hero-editorial-title font-title text-[clamp(2.85rem,11.8vw,5.8rem)] font-extrabold uppercase leading-[0.84] tracking-[-0.05em] text-white sm:text-[clamp(4.2rem,6.35vw,5.8rem)]">
             <span className="hero-title-line"><span>Corra com a</span></span>
             <span className="hero-title-line hero-title-line-two"><span className="text-cyan">Tropa.</span></span>
@@ -40,8 +38,6 @@ export function Hero() {
             </Button>
           </MotionReveal>
         </div>
-
-        <HeroVisual />
 
         <MotionReveal eager delay={0.38} className="relative z-10 mt-11 grid w-full max-w-[620px] grid-cols-3 border-y border-white/10 md:mt-12">
           <div className="py-4 pr-3">

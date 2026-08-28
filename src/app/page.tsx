@@ -1,4 +1,5 @@
 import { About } from "@/components/about";
+import { CommunityChannels } from "@/components/community-channels";
 import { Events } from "@/components/events";
 import { FAQ } from "@/components/faq";
 import { Footer } from "@/components/footer";
@@ -23,6 +24,7 @@ export default function Home() {
         <RunningLevels />
         <Events />
         <Gallery />
+        <CommunityChannels />
         <JoinCta />
         <FAQ />
       </main>

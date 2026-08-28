@@ -9,25 +9,47 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { useRef, type PointerEvent } from "react";
+import { useRef, useSyncExternalStore, type PointerEvent } from "react";
+
+type NavigatorWithConnection = Navigator & {
+  connection?: EventTarget & { saveData?: boolean };
+};
+
+function subscribeToSaveData(callback: () => void) {
+  const connection = (navigator as NavigatorWithConnection).connection;
+  connection?.addEventListener("change", callback);
+  return () => connection?.removeEventListener("change", callback);
+}
+
+function getSaveDataSnapshot() {
+  return (navigator as NavigatorWithConnection).connection?.saveData === true;
+}
+
+function getServerSaveDataSnapshot() {
+  return true;
+}
 
 export function HeroVisual() {
   const visualRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
+  const saveData = useSyncExternalStore(
+    subscribeToSaveData,
+    getSaveDataSnapshot,
+    getServerSaveDataSnapshot,
+  );
+  const animateMascot = !reducedMotion && !saveData;
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
-  const smoothX = useSpring(pointerX, { stiffness: 110, damping: 28, mass: 0.4 });
-  const smoothY = useSpring(pointerY, { stiffness: 110, damping: 28, mass: 0.4 });
-  const photoX = useTransform(smoothX, [-1, 1], [-5, 5]);
-  const photoY = useTransform(smoothY, [-1, 1], [-3, 3]);
-  const frameX = useTransform(smoothX, [-1, 1], [2, -2]);
-  const frameY = useTransform(smoothY, [-1, 1], [1, -1]);
+  const smoothX = useSpring(pointerX, { stiffness: 100, damping: 28, mass: 0.45 });
+  const smoothY = useSpring(pointerY, { stiffness: 100, damping: 28, mass: 0.45 });
+  const gifX = useTransform(smoothX, [-1, 1], [-4, 4]);
+  const gifY = useTransform(smoothY, [-1, 1], [-2, 2]);
   const { scrollYProgress } = useScroll({
     target: visualRef,
     offset: ["start start", "end start"],
   });
-  const scrollY = useTransform(scrollYProgress, [0, 1], [0, -18]);
-  const scrollScale = useTransform(scrollYProgress, [0, 1], [1, 1.025]);
+  const scrollY = useTransform(scrollYProgress, [0, 1], [0, -12]);
+  const scrollScale = useTransform(scrollYProgress, [0, 1], [1, 1.012]);
 
   function handlePointerMove(event: PointerEvent<HTMLDivElement>) {
     if (reducedMotion || event.pointerType === "touch") return;
@@ -44,38 +66,30 @@ export function HeroVisual() {
   return (
     <div
       ref={visualRef}
-      className="hero-photo-visual"
+      className="hero-gif-visual"
       onPointerMove={handlePointerMove}
       onPointerLeave={resetPointer}
       aria-hidden="true"
     >
-      <span className="hero-photo-line" />
       <motion.div
-        className="hero-photo-scroll"
+        className="hero-gif-scroll"
         style={reducedMotion ? undefined : { y: scrollY, scale: scrollScale }}
       >
-        <motion.span
-          className="hero-photo-outline"
-          style={reducedMotion ? undefined : { x: frameX, y: frameY }}
-        />
         <motion.div
-          className="hero-photo-frame"
-          style={reducedMotion ? undefined : { x: photoX, y: photoY }}
+          className="hero-gif-stage"
+          style={reducedMotion ? undefined : { x: gifX, y: gifY }}
         >
           <Image
-            src="/images/foto-1-corrida.png"
+            src={animateMascot
+              ? "/images/tubarao-correndo-hero.webp"
+              : "/images/tubarao-correndo-poster.webp"}
             alt=""
             fill
+            unoptimized={animateMascot}
             preload
-            sizes="(max-width: 767px) 75vw, 36vw"
-            className="hero-photo-image object-cover"
+            sizes="(max-width: 767px) 82vw, 38vw"
+            className="hero-shark-gif object-contain"
           />
-          <span className="hero-photo-overlay" />
-          <span className="hero-photo-accent" />
-          <div className="hero-photo-caption">
-            <span>Paulista — PE</span>
-            <strong>Corrida de rua</strong>
-          </div>
         </motion.div>
       </motion.div>
     </div>

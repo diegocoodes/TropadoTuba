@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Instagram, MapPin, MessageCircle } from "lucide-react";
-import { Logo } from "@/components/logo";
 import { whatsappUrl } from "@/lib/utils";
 
 const footerLinks = [
@@ -20,16 +19,15 @@ export function Footer() {
       <div className="site-container">
         <div className="grid gap-12 pb-14 md:grid-cols-2 lg:grid-cols-[1.25fr_.75fr_1fr]">
           <div>
-            <div className="flex items-center gap-5">
+            <div>
               <Image
                 src="/images/tubarao-com nome.png.PNG"
                 alt="Brasão Tropa do Tubarão, correr, superar, vencer"
-                width={1254}
-                height={1254}
-                sizes="96px"
-                className="size-24 rounded-full object-contain shadow-[0_0_28px_rgba(0,207,255,0.16)]"
+                width={500}
+                height={500}
+                sizes="160px"
+                className="size-40 object-contain drop-shadow-[0_0_28px_rgba(0,207,255,0.16)]"
               />
-              <Logo />
             </div>
             <p className="mt-6 font-title text-3xl font-bold uppercase leading-none text-white">
               Correr <span className="text-cyan">•</span> Superar <span className="text-magenta">•</span> Vencer

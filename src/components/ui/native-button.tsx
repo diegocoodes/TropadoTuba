@@ -37,6 +37,7 @@ export function NativeButton({
     <motion.div
       className={cn("group/native relative inline-flex w-fit", wrapperClassName)}
       whileHover={{ scale: reducedMotion ? 1 : 1.008 }}
+      whileTap={{ scale: reducedMotion ? 1 : 0.985 }}
       transition={reducedMotion ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 24 }}
     >
       {glow && (

@@ -1,19 +1,6 @@
-import Image from "next/image";
-import { Instagram } from "lucide-react";
-import { galleryImages } from "@/data/site-data";
-import { SectionHeading } from "@/components/section-heading";
+import { Camera, Flag, Instagram } from "lucide-react";
 import { MotionReveal } from "@/components/motion-reveal";
-import { cn } from "@/lib/utils";
-
-const gridClasses = [
-  "col-span-1 row-span-2 sm:col-span-2 md:col-span-5 md:row-span-2",
-  "col-span-1 md:col-span-3",
-  "col-span-1 md:col-span-4",
-  "col-span-1 sm:col-span-2 md:col-span-4",
-  "col-span-1 sm:col-span-2 md:col-span-3",
-  "col-span-1 md:col-span-4",
-  "col-span-1 md:col-span-5",
-];
+import { SectionHeading } from "@/components/section-heading";
 
 export function Gallery() {
   return (
@@ -24,7 +11,7 @@ export function Gallery() {
             kicker="Vida em movimento"
             title="Nossa"
             outline="galeria"
-            description="Treinos, provas, medalhas e os encontros que transformam um grupo de corredores em comunidade."
+            description="Os primeiros registros da Tropa estão a caminho."
             className="mb-0"
             inverted
           />
@@ -34,27 +21,29 @@ export function Gallery() {
             rel="noreferrer"
             className="flex min-h-12 shrink-0 items-center gap-2 border-b-2 border-blue py-2 text-xs font-extrabold uppercase tracking-[0.12em] text-blue outline-none transition-colors hover:border-magenta hover:text-magenta focus-visible:ring-2 focus-visible:ring-blue"
           >
-            <Instagram className="size-5" /> @tropadotubaraorun
+            <Instagram className="size-5" aria-hidden="true" /> @tropadotubaraorun
           </a>
         </div>
 
-        <div className="mt-10 grid auto-rows-[260px] grid-cols-1 gap-3 sm:mt-14 sm:auto-rows-[210px] sm:grid-cols-2 md:auto-rows-[250px] md:grid-cols-12">
-          {galleryImages.map((image, index) => (
-            <MotionReveal key={image.src} delay={index * 0.05} className={`group relative overflow-hidden bg-ink ${gridClasses[index]}`}>
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, 40vw"
-                className={cn(image.className)}
-              />
-              <div className="absolute inset-0 bg-ink/15 transition-colors group-hover:bg-ink/35" />
-              <span className="absolute bottom-0 left-0 bg-ink px-4 py-2.5 text-[0.65rem] font-extrabold uppercase tracking-[0.14em] text-white">
-                {image.label}
-              </span>
-            </MotionReveal>
-          ))}
-        </div>
+        <MotionReveal className="relative mt-10 overflow-hidden border border-[#c8d0dc] bg-white px-6 py-14 text-center sm:mt-14 sm:px-10 sm:py-20">
+          <div
+            className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,207,255,0.12),transparent_48%)]"
+            aria-hidden="true"
+          />
+          <div className="relative mx-auto flex size-20 items-center justify-center rounded-full border border-blue/25 bg-ice text-blue shadow-[0_16px_45px_rgba(14,84,189,0.12)]">
+            <Camera className="size-9" strokeWidth={1.7} aria-hidden="true" />
+            <Flag className="absolute -right-1 -top-1 size-6 text-magenta" aria-hidden="true" />
+          </div>
+          <p className="relative mt-7 text-xs font-extrabold uppercase tracking-[0.17em] text-blue">
+            Em breve
+          </p>
+          <h3 className="relative mx-auto mt-3 max-w-3xl font-title text-[clamp(2rem,5vw,4rem)] font-extrabold uppercase leading-none tracking-[-0.035em] text-ink">
+            As fotos serão exibidas após a primeira corrida da comunidade.
+          </h3>
+          <p className="relative mx-auto mt-5 max-w-xl text-sm leading-7 text-[#526078] sm:text-base">
+            A primeira largada também será o começo da nossa história em imagens.
+          </p>
+        </MotionReveal>
       </div>
     </section>
   );

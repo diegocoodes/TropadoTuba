@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -17,13 +17,33 @@ const links = [
 
 export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   const reducedMotion = useReducedMotion();
+  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!open) return;
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const handleKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (event.key !== "Tab") return;
+
+      const focusable = panelRef.current?.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+      if (!focusable?.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     };
     document.addEventListener("keydown", handleKey);
     return () => {
@@ -43,11 +63,13 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
           transition={{ duration: reducedMotion ? 0 : 0.2 }}
         >
           <motion.button
+            type="button"
             className="absolute inset-0 bg-black/70"
             aria-label="Fechar menu"
             onClick={onClose}
           />
           <motion.div
+            ref={panelRef}
             className="absolute right-0 top-0 flex h-full w-[min(88vw,390px)] flex-col border-l border-line bg-ink p-6 shadow-[-24px_0_60px_rgba(0,0,0,.35)]"
             role="dialog"
             aria-modal="true"
@@ -70,9 +92,24 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
           </button>
         </div>
         <nav className="mt-8" aria-label="Navegação móvel">
-          <ul className="divide-y divide-line">
+          <motion.ul
+            className="divide-y divide-line"
+            initial="closed"
+            animate="open"
+            variants={{
+              closed: {},
+              open: { transition: { staggerChildren: reducedMotion ? 0 : 0.045, delayChildren: reducedMotion ? 0 : 0.1 } },
+            }}
+          >
             {links.map(([label, href]) => (
-              <li key={href}>
+              <motion.li
+                key={href}
+                variants={{
+                  closed: { opacity: 0, x: reducedMotion ? 0 : 18 },
+                  open: { opacity: 1, x: 0 },
+                }}
+                transition={{ duration: reducedMotion ? 0 : 0.28 }}
+              >
                 <a
                   href={href}
                   onClick={onClose}
@@ -81,9 +118,9 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                   <span>{label}</span>
                   <ArrowUpRight className="size-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </a>
-              </li>
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
         </nav>
         <Button asChild size="lg" className="mt-auto w-full">
           <a href="#inscricao" onClick={onClose}>Faça parte <ArrowUpRight className="size-4" /></a>

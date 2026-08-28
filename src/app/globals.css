@@ -213,24 +213,14 @@ a {
   .site-container { width: min(calc(100% - 4rem), 1180px); }
 }
 
-@keyframes hero-editorial-line {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
 @keyframes hero-title-reveal {
   from { opacity: 0; transform: translate3d(0, 105%, 0); }
   to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
-@keyframes hero-photo-reveal {
-  from { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); }
-  to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-}
-
-@keyframes hero-photo-settle {
-  from { transform: scale(1.045); }
-  to { transform: scale(1); }
+@keyframes hero-gif-enter {
+  from { opacity: 0; transform: translate3d(36px, 0, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
 .hero-editorial {
@@ -246,19 +236,6 @@ a {
   height: 1px;
   content: "";
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
-}
-
-.hero-opening-line {
-  position: absolute;
-  top: 10.2rem;
-  right: 9%;
-  z-index: 1;
-  width: min(31vw, 440px);
-  height: 1px;
-  transform: scaleX(0);
-  transform-origin: left;
-  background: linear-gradient(90deg, #00cfff, rgba(0, 207, 255, 0));
-  animation: hero-editorial-line 0.9s 0.1s forwards cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hero-editorial-title {
@@ -292,121 +269,47 @@ a {
   font-style: normal;
 }
 
-.hero-photo-visual {
+.hero-gif-visual {
   position: relative;
   z-index: 3;
   width: 100%;
-  height: 430px;
-  margin-top: 2.5rem;
+  height: min(78vw, 330px);
+  margin-bottom: 1.5rem;
+  mix-blend-mode: screen;
 }
 
-.hero-photo-scroll {
+.hero-gif-scroll {
   position: relative;
+  width: min(76vw, 340px);
   height: 100%;
-  aspect-ratio: 2 / 3;
   margin-inline: auto;
   transform-origin: center bottom;
 }
 
-.hero-photo-frame {
+.hero-gif-stage {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background: #0b1027;
-  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.28);
-  animation: hero-photo-reveal 0.9s 0.12s both cubic-bezier(0.16, 1, 0.3, 1);
+  animation: hero-gif-enter 0.8s 0.12s both cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.hero-photo-outline {
-  position: absolute;
-  inset: 12px -12px -12px 12px;
-  border: 1px solid rgba(0, 207, 255, 0.38);
-}
-
-.hero-photo-image {
-  animation: hero-photo-settle 1.25s 0.08s both cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.hero-photo-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(7, 9, 30, 0.06) 45%, rgba(7, 9, 30, 0.72) 100%),
-    linear-gradient(90deg, rgba(7, 9, 30, 0.16), transparent 36%);
-}
-
-.hero-photo-accent {
-  position: absolute;
-  inset: 0 0 auto auto;
-  width: 3px;
-  height: 34%;
-  background: #d923a5;
-}
-
-.hero-photo-caption {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  min-width: 70%;
-  flex-direction: column;
-  border-top: 1px solid rgba(0, 207, 255, 0.65);
-  background: rgba(7, 9, 30, 0.9);
-  padding: 0.9rem 1.1rem;
-  text-align: right;
-  backdrop-filter: blur(8px);
-}
-
-.hero-photo-caption span {
-  color: #00cfff;
-  font-size: 0.6rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-.hero-photo-caption strong {
-  margin-top: 0.2rem;
-  color: #f5f7fb;
-  font-family: var(--font-barlow), Arial, sans-serif;
-  font-size: 1.05rem;
-  text-transform: uppercase;
-}
-
-.hero-photo-line {
-  display: none;
+.hero-shark-gif {
+  filter: saturate(0.92) contrast(1.03);
 }
 
 @media (min-width: 768px) {
-  .hero-photo-visual {
+  .hero-gif-visual {
     position: absolute;
-    top: 2rem;
-    right: -1.5rem;
-    bottom: 3.5rem;
-    width: 47%;
+    top: 3rem;
+    right: -1rem;
+    bottom: 3rem;
+    width: 48%;
     height: auto;
     margin-top: 0;
+    margin-bottom: 0;
   }
 
-  .hero-photo-line {
-    position: absolute;
-    top: 12%;
-    right: 91%;
-    display: block;
-    width: 18vw;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0, 207, 255, 0.42));
-  }
-}
-
-@media (max-width: 767px) {
-  .hero-opening-line { display: none; }
-
-  .hero-photo-visual {
-    height: min(118vw, 460px);
-  }
-
-  .hero-photo-outline {
-    inset: 8px -8px -8px 8px;
+  .hero-gif-scroll {
+    width: min(100%, 530px);
   }
 }

@@ -137,7 +137,7 @@ await send("Emulation.setDeviceMetricsOverride", {
 await navigate("http://localhost:3010");
 await loadImagesForVisualAudit();
 
-for (const id of ["inicio", "sobre", "instinto", "treinos", "eventos", "galeria", "inscricao", "contato"]) {
+for (const id of ["inicio", "sobre", "instinto", "treinos", "niveis", "eventos", "galeria", "comunidade", "inscricao", "contato"]) {
   await scrollToId(id);
   const metrics = await evaluate(`({scrollWidth:document.documentElement.scrollWidth,clientWidth:document.documentElement.clientWidth,top:Math.round(scrollY),visibleImages:[...document.images].filter((image)=>{const rect=image.getBoundingClientRect();return rect.bottom>0&&rect.top<innerHeight}).map((image)=>({loaded:image.complete&&image.naturalWidth>0,src:image.currentSrc.split("/").pop()}))})`);
   const path = await screenshot(`desktop-${id}`);
@@ -169,7 +169,7 @@ await send("Emulation.setDeviceMetricsOverride", {
 await navigate("http://localhost:3010");
 await loadImagesForVisualAudit();
 
-for (const id of ["inicio", "instinto", "treinos", "eventos", "galeria", "inscricao"]) {
+for (const id of ["inicio", "instinto", "treinos", "niveis", "eventos", "galeria", "comunidade", "inscricao"]) {
   await scrollToId(id);
   const metrics = await evaluate(`({scrollWidth:document.documentElement.scrollWidth,clientWidth:document.documentElement.clientWidth,top:Math.round(scrollY),visibleImages:[...document.images].filter((image)=>{const rect=image.getBoundingClientRect();return rect.bottom>0&&rect.top<innerHeight}).map((image)=>({loaded:image.complete&&image.naturalWidth>0,src:image.currentSrc.split("/").pop()}))})`);
   const path = await screenshot(`mobile-${id}`);
