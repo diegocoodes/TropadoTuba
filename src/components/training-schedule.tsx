@@ -1,23 +1,17 @@
-import { ArrowUpRight, CalendarDays, Clock3, MapPin, MessageCircle } from "lucide-react";
+import { CalendarDays, CalendarX2, Clock3, MapPin } from "lucide-react";
 import { MotionReveal } from "@/components/motion-reveal";
 import { SectionHeading } from "@/components/section-heading";
-import { NativeButton } from "@/components/ui/native-button";
 import { nextTraining } from "@/data/site-data";
-import { whatsappUrl } from "@/lib/utils";
 
 export function TrainingSchedule() {
-  const confirmationUrl = whatsappUrl(
-    `Olá! Gostaria de confirmar minha presença no treino do dia ${nextTraining.date}, na ${nextTraining.address}, ${nextTraining.neighborhood}.`,
-  );
-
   return (
     <section id="treinos" className="section-padding bg-navy">
       <div className="site-container">
         <SectionHeading
           kicker="Agenda da Tropa"
-          title="Próximo"
+          title="Último"
           outline="treino"
-          description="Um encontro para correr junto, evoluir no seu ritmo e sentir a energia da Tropa."
+          description="Este encontro já foi realizado. Fique de olho nos nossos canais para acompanhar a próxima data."
           className="mb-10 md:mb-12"
         />
 
@@ -55,20 +49,14 @@ export function TrainingSchedule() {
               </div>
             </dl>
 
-            <NativeButton
-              href={confirmationUrl}
-              target="_blank"
-              rel="noreferrer"
-              glow
-              wrapperClassName="w-full lg:w-fit"
-              className="w-full px-5 lg:w-auto"
-              ariaLabel={`Confirmar presença no treino de ${nextTraining.date} pelo WhatsApp`}
+            <div
+              className="flex min-h-12 w-full items-center justify-center gap-2 border border-magenta/50 bg-magenta/10 px-5 text-sm font-extrabold uppercase tracking-[0.1em] text-white lg:w-auto"
+              role="status"
+              aria-label={`Status do treino de ${nextTraining.date}: ${nextTraining.status}`}
             >
-              <MessageCircle className="size-5" />
-              <span className="sm:hidden">Confirmar</span>
-              <span className="hidden sm:inline">Confirmar no WhatsApp</span>
-              <ArrowUpRight className="size-4" />
-            </NativeButton>
+              <CalendarX2 className="size-5 text-magenta" aria-hidden="true" />
+              {nextTraining.status}
+            </div>
           </div>
         </MotionReveal>
       </div>

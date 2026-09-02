@@ -113,10 +113,11 @@ async function scrollToId(id) {
   }
   await evaluate(`document.getElementById(${JSON.stringify(id)})?.scrollIntoView({behavior:"instant",block:"start"})`);
   await sleep(800);
+  await evaluate(`Promise.race([Promise.all([...document.images].filter((image)=>{const rect=image.getBoundingClientRect();return rect.bottom>0&&rect.top<innerHeight}).map((image)=>{if(image.complete)return Promise.resolve();return new Promise((resolve)=>{image.addEventListener("load",resolve,{once:true});image.addEventListener("error",resolve,{once:true})})})),new Promise((resolve)=>setTimeout(resolve,5000))])`);
 }
 
 async function loadImagesForVisualAudit() {
-  await evaluate(`Promise.all([...document.images].map((image)=>{image.loading="eager";if(image.complete)return Promise.resolve();return new Promise((resolve)=>{image.addEventListener("load",resolve,{once:true});image.addEventListener("error",resolve,{once:true})})}))`);
+  await evaluate(`Promise.race([Promise.all([...document.images].map((image)=>{image.loading="eager";if(image.complete)return Promise.resolve();return new Promise((resolve)=>{image.addEventListener("load",resolve,{once:true});image.addEventListener("error",resolve,{once:true})})})),new Promise((resolve)=>setTimeout(resolve,10000))])`);
 }
 
 await Promise.all([
@@ -183,10 +184,11 @@ report.interactions.whatsappCta = await evaluate(`document.querySelector('#inscr
 
 await scrollToId("eventos");
 report.interactions.peRunningEventLinks = await evaluate(`document.querySelectorAll('#eventos a[href^="https://www.perunning.com.br/events/"]').length`);
-report.interactions.eventDates = await evaluate(`[...document.querySelectorAll('#eventos a[href^="https://www.perunning.com.br/events/"]')].map((card)=>card.textContent.includes("29 de agosto de 2026"))`);
+report.interactions.eventDates = await evaluate(`[...document.querySelectorAll('#eventos a[href^="https://www.perunning.com.br/events/"]')].map((card)=>card.textContent.match(/(setembro|outubro) de 2026/i)?.[0] || null)`);
 
 await scrollToId("treinos");
 report.interactions.trainingDate = await evaluate(`document.querySelector('#treinos')?.textContent.includes("28 de agosto") || false`);
+report.interactions.trainingStatus = await evaluate(`document.querySelector('#treinos')?.textContent.includes("Evento encerrado") || false`);
 report.interactions.trainingWhatsAppCta = await evaluate(`document.querySelector('#treinos a[href^="https://wa.me/"]')?.getAttribute("href") || null`);
 
 await evaluate(`document.getElementById("inicio")?.scrollIntoView({behavior:"instant",block:"start"})`);

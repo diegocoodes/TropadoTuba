@@ -4,6 +4,7 @@ export const nextTraining = {
   neighborhood: "Arthur Lundgren 1",
   gatheringTime: "19:00",
   departureTime: "19h40",
+  status: "Evento encerrado",
 };
 
 export const runningLevels = [
@@ -39,28 +40,28 @@ export const statistics = [
 
 export const events = [
   {
-    name: "1ª Corrida dos Pais Conviver",
-    date: "29 de agosto de 2026",
-    location: "Cabo de Santo Agostinho, PE",
-    image: "https://i0.wp.com/www.perunning.com.br/wp-content/uploads/2026/07/corrida-conviver-cabo-sto-agostinho-2026.jpg?fit=1440%2C1920&ssl=1",
-    href: "https://www.perunning.com.br/events/1a-corrida-dos-pais-conviver/",
-    alt: "Cartaz oficial da Corrida dos Pais Conviver",
+    name: "ASICS Run Challenge 2026",
+    date: "20 de setembro de 2026",
+    location: "Forte do Brum, Recife, PE",
+    image: "https://i0.wp.com/www.perunning.com.br/wp-content/uploads/2026/03/asics-run-challenge-calendario-2026.jpg?ssl=1",
+    href: "https://www.perunning.com.br/events/asics-run-challenge-recife-2026/",
+    alt: "Cartaz oficial da ASICS Run Challenge 2026",
   },
   {
-    name: "2ª Father Night Run",
-    date: "29 de agosto de 2026",
-    location: "Igarassu, PE",
-    image: "https://i0.wp.com/www.perunning.com.br/wp-content/uploads/2026/03/father-night-run_igarassu_2026-2.jpeg?fit=1024%2C1280&ssl=1",
-    href: "https://www.perunning.com.br/events/2a-father-night-run/",
-    alt: "Cartaz oficial da Father Night Run",
+    name: "RUMO Running — 2ª edição",
+    date: "3 de outubro de 2026",
+    location: "Reserva do Paiva, Cabo de Santo Agostinho, PE",
+    image: "https://i0.wp.com/www.perunning.com.br/wp-content/uploads/2026/05/rumo-running_2026_paiva.jpg?ssl=1",
+    href: "https://www.perunning.com.br/events/rumo-running-2a-edicao/",
+    alt: "Cartaz oficial da segunda edição da RUMO Running",
   },
   {
-    name: "Duvália Run 2026",
-    date: "29 de agosto de 2026",
-    location: "Casa Caiada, Olinda, PE",
-    image: "https://i0.wp.com/www.perunning.com.br/wp-content/uploads/2026/05/duvalia-run-2026_olinda.jpg?fit=1080%2C1127&ssl=1",
-    href: "https://www.perunning.com.br/events/duvalia-run-2026/",
-    alt: "Cartaz oficial da Duvália Run 2026",
+    name: "Netshoes Run Tour",
+    date: "18 de outubro de 2026",
+    location: "Forte do Brum, Recife, PE",
+    image: "https://i0.wp.com/www.perunning.com.br/wp-content/uploads/2026/02/netshoes-run-tour_2026.jpg?ssl=1",
+    href: "https://www.perunning.com.br/events/netshoes-run-tour-etapa-recife-2026/",
+    alt: "Cartaz oficial da Netshoes Run Tour Recife 2026",
   },
 ];
 
@@ -121,7 +122,7 @@ export const faqs = [
   {
     question: "Onde os treinos acontecem?",
     answer:
-      "O próximo encontro será na Rua Caruaru, 506, em Arthur Lundgren 1. A agenda da página informa os horários de concentração e saída.",
+      "Os locais dos próximos encontros são divulgados na agenda e nos canais da Tropa. O treino de 28 de agosto, na Rua Caruaru, 506, já foi encerrado.",
   },
   {
     question: "Preciso pagar para participar?",
